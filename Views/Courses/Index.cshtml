@@ -1,0 +1,23 @@
+﻿@model GolfCourses
+
+<h2 style="color:green"> Search Courses</h2>
+<div>
+	<img src="~/sports-sportsmanias.gif" />"
+         
+</div>
+
+<form action = "/Courses/GetCourses" method="post">
+    <label  class="control-label">Radius</label>
+    <input type="text" name="radius" maxlength="5" size="5"><br></br>
+
+    <label class="control-label">ZipCode</label>
+    <input type="text"  step="0.01" name="ZipCode" maxlength="5" size="5" ><br></br>
+    <input type="Submit" value="Search Courses">
+</form>
+<div class="bg-image"
+     style="
+    background-image: url('https://wallpaperaccess.com/full/1128313.jpg');
+    height: 50vh;
+  "></div>
+
+

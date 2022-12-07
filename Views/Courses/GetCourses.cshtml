@@ -1,0 +1,34 @@
+﻿@model IEnumerable<GolfCourses>
+
+<h2 style="color:green">Golf Courses</h2>
+
+<table class="table table-hover">
+    <tr>
+        <th>ZipCode</th>
+        <th>Name</th>
+        <th>Distance</th>
+        <th>Details</th>
+
+      
+    </tr>
+
+    @foreach (var course in @Model)
+    {
+        <tr>
+            
+            <td>@course.ZipCode</td>              
+            @*<td><a href=/Courses/GetCourseDetails?name="@course.Name"&zip=@course.ZipCode>@course.Name</a></td>*@
+            <td>@course.Name</td>
+            <td>@course.Distance</td>
+            <form action="/Courses/GetCourseDetails"  method="post">
+                <input type="hidden" name="name" value="@course.Name">
+                <input type="hidden" name="zip" value="@course.ZipCode">
+                
+            <td><input style="color:darkgreen"type="submit" value="View Course"></td>
+            </form>
+         
+         
+        </tr>
+    }
+
+</table>

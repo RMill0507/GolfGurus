@@ -1,0 +1,41 @@
+﻿@model GolfCourses
+<h1 style="color:green" >@Model.Name</h1>
+
+<table class="table">
+    <tr>
+        
+        <th>Name</th>
+        <th>PhoneNumber</th>
+        <th>Address</th>
+        <th></th>
+        <th></th>
+        
+        
+    </tr>
+    <tr>
+        
+        <td>@Model.Name</td>
+        <td>@Model.PhoneNumber</td>
+        <td>@Model.Address</td>
+        <form action="/SavedCourses/InsertCourseToDataBase" method="post">
+            <input type="hidden" name="Name" value="@Model.Name">
+            <input type="hidden" name="Address" value="@Model.Address">
+            <td><input type="submit" value="Save Course"></td>
+        </form>
+       
+    </tr>
+    
+  
+</table>
+
+<h1 style="color:blue">Weather</h1>
+<ul>
+    <li>Temperature: @Model.Temp &#176; F </li>
+    <li>Feels Like: @Model.FeelsLike &#176; F</li>
+    <li>Temp Min: @Model.MinTemp &#176; F</li>
+    <li>Temp Max: @Model.MaxTemp &#176; F</li>
+    <li>Humidity: @Model.Humidity</li>
+    <li>Wind speed: @Model.WindSpeed MPH</li>
+    
+
+</ul>
