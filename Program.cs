@@ -7,20 +7,28 @@ namespace GolfGurus
     {
         public static void Main(string[] args)
         {
+            // creates an instance of WebApplicationBuilder and passing the command-line arguments
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            // adding controllers and views to the application and this service is required for the MVC framework to work
             builder.Services.AddControllersWithViews();
+            // adding a scoped service, which means that a new instance of IDbConnection will be created for each scope
+            // it will use MySqlConnection and the connection string from configuration file
             builder.Services.AddScoped<IDbConnection>((s) =>
             {
                 IDbConnection conn = new MySqlConnection(builder.Configuration.GetConnectionString("savedcourses"));
-                conn.Open();//creating connection using connection string thats pulling info from savedcourses. to generate IDBconnection
-                            //
+                conn.Open();
                 return conn;
             });
-            builder.Services.AddTransient<APIClient>();//dependency injection. passing in to controller
-            builder.Services.AddTransient<IGolfCourseRepository, GolfCourseRepository>();//passing idbConnection to repository
+            
+            //adding a transient service, which means that a new instance of APIClient will be created each time they are requested
+            builder.Services.AddTransient<APIClient>();
+            
+            // adding a transient service, which means that a new instance of IGolfCourseRepository will be created 
+            // each time they are requested and it will implement the GolfCourseRepository class
+            builder.Services.AddTransient<IGolfCourseRepository, GolfCourseRepository>();
 
+            // build the web application based on the services and configurations provided
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
